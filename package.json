@@ -1,0 +1,25 @@
+{
+  "name": "expressapi",
+  "version": "1.0.0",
+  "description": "express app with mongodb sandbox fun",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccatto/expressapi.git"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "mongodb"
+  ],
+  "author": "chris catto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ccatto/expressapi/issues"
+  },
+  "homepage": "https://github.com/ccatto/expressapi#readme"
+}
