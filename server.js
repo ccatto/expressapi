@@ -207,35 +207,52 @@ app.get("/contacts", function (req, res) {
 });
 
 app.post("/contacts", function (req, res) {
+    var newContact = req.body;
+    newContact.createDate = new Date();
 
-    {
-        "_id": <ObjectId>
-        "firstName": <string>
-        , "lastName": <string>
-        , "email": <string>
-        , "phoneNumbers": {
-            "mobile": <string>
-            , "work": <string>
-    },
-        "twitterHandle": <string>
-        , "addresses": {
-            "home": <string>
-            , "work": <string>
-            }
+    if (!(req.body.firstName || req.body.lastName)) {
+        handleError(res, "Invalid user input", "Must provide a first or last name.", 400);
+    }
+
+    db.collection(CONTACTS_COLLECTION).insertOne(newContact, function (err, doc) {
+        if (err) {
+            handleError(res, err.message, "Failed to create new contact.");
+        } else {
+            res.status(201).json(doc.ops[0]);
         }
     });
-                                    
-    /*  "/contacts/:id"
-        *    GET: find contact by id
-        *    PUT: update contact by id
-        *    DELETE: deletes contact by id
-        */
-                                    
-app.get("/contacts/:id", function(req, res) {
-                                            });
-                                            
-app.put("/contacts/:id", function(req, res) {
-                                            });
-                                            
-app.delete("/contacts/:id", function(req, res) {
-                                            });
+});
+
+// app.post("/contacts", function (req, res) {
+
+// {
+//     "_id": <ObjectId>
+//     "firstName": <string>
+//     , "lastName": <string>
+//     , "email": <string>
+//     , "phoneNumbers": {
+//         "mobile": <string>
+//         , "work": <string>
+// },
+//     "twitterHandle": <string>
+//     , "addresses": {
+//         "home": <string>
+//         , "work": <string>
+//         }
+//     }
+// });
+
+/*  "/contacts/:id"
+    *    GET: find contact by id
+    *    PUT: update contact by id
+    *    DELETE: deletes contact by id
+    */
+
+app.get("/contacts/:id", function (req, res) {
+});
+
+app.put("/contacts/:id", function (req, res) {
+});
+
+app.delete("/contacts/:id", function (req, res) {
+});
